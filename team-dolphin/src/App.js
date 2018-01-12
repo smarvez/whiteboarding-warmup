@@ -5,16 +5,22 @@ import Header from './Components/Header';
 import Body from './Components/Body'
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      TeamMembers: this.props.TeamMembers,
+      expanded: -1
+    }
+  }
+
+  updateState = (id) => {
+    this.setState({expanded:id})
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Body TeamMembers={this.state.TeamMembers} expanded={this.state.expanded} updateState={this.updateState}/>
       </div>
     );
   }
